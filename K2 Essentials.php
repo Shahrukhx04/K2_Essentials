@@ -9,23 +9,14 @@
  **/
 
 
-register_activation_hook(__FILE__, 'add_defaults_fn');
 add_action( 'admin_menu', 'add_k2_essentials_sidebar' );
-add_action('admin_init', 'sampleoptions_init_fn' );
+add_action('admin_init', 'k2_essentials_init' );
 
 
 
 
 
 
-// Define default option settings
-function add_defaults_fn() {
-	$tmp = get_option('plugin_options');
-    if(($tmp['chkbox1']=='on')||(!is_array($tmp))) {
-		$arr = array("dropdown1"=>"Orange", "text_area" => "Space to put a lot of information here!", "text_string" => "Some sample text", "pass_string" => "123456", "chkbox1" => "", "chkbox2" => "on", "option_set1" => "Triangle");
-		update_option('plugin_options', $arr);
-	}
-}
 
 // Add a new top level menu link to the ACP
 function add_k2_essentials_sidebar()
@@ -35,7 +26,7 @@ function add_k2_essentials_sidebar()
         'K2 Essentials', // Text to show on the menu link
         'manage_options', // Capability requirement to see the link
         'k2-essentials', // The 'slug' - file to display when clicking the link
-		'options_page_fn'
+		'k2_essentials_options_page_fn'
     );
 	
 
@@ -44,39 +35,27 @@ function add_k2_essentials_sidebar()
 
 
 
-function sampleoptions_init_fn (){
+function k2_essentials_init (){
 	
-	register_setting('plugin_options', 'plugin_options', 'plugin_options_validate' );
-	add_settings_section('main_section', 'Main Settings', 'section_text_fn', __FILE__);
-	add_settings_field('plugin_chk2', 'Enable to redirect login url', 'setting_chk2_fn', __FILE__, 'main_section');
-	//add_settings_field('plugin_chk3_login_logo', 'Enable to change login logo', 'setting_checkbox3_login_logo', __FILE__, 'main_section');
-	add_settings_field('plugin_chk4_block_editor_gutenbergo', 'Disable for classic gutenberg editor', 'setting_checkbox4_block_editor_gutenberg', __FILE__, 'main_section');
-	add_settings_field('plugin_chk5_disable_admin_bar', 'Disable admin bar', 'setting_checkbox5_disable_admin_bar', __FILE__, 'main_section');
-	add_settings_field('plugin_chk6_site_under_Maintaince', 'Put Site Under Maintaince', 'setting_checkbox6_site_under_Maintaince', __FILE__, 'main_section');
-	add_settings_field('plugin_chk7_hide_update_message', 'Hide Wordpress Update Notice for Clients', 'setting_checkbox7_hide_update_message', __FILE__, 'main_section');
-	//add_settings_field('plugin_chk1', 'Restore Defaults Upon Reactivation?', 'setting_chk1_fn', __FILE__, 'main_section');
+	register_setting('plugin_options', 'plugin_options', 'k2_essentials_plugin_options_validate' );
+	add_settings_section('main_section', 'Main Settings', 'k2_essentials_section_text_fn', __FILE__);
+	add_settings_field('plugin_chk2', 'Enable to redirect login url', 'k2_essentials_setting_chk2_fn', __FILE__, 'main_section');
+	add_settings_field('plugin_chk4_block_editor_gutenbergo', 'Disable for classic gutenberg editor', 'k2_essentials_setting_checkbox4_block_editor_gutenberg', __FILE__, 'main_section');
+	add_settings_field('plugin_chk5_disable_admin_bar', 'Disable admin bar', 'k2_essentials_setting_checkbox5_disable_admin_bar', __FILE__, 'main_section');
+	add_settings_field('plugin_chk6_site_under_Maintaince', 'Put Site Under Maintaince', 'k2_essentials_setting_checkbox6_site_under_Maintaince', __FILE__, 'main_section');
+	add_settings_field('plugin_chk7_hide_update_message', 'Hide Wordpress Update Notice for Clients', 'k2_essentials_setting_checkbox7_hide_update_message', __FILE__, 'main_section');
 
 }
 
 
 // Section HTML, displayed before the first option
-function  section_text_fn() {
+function  k2_essentials_section_text_fn() {
 	echo '<p>Here, you can enable/disable fields that are needed before deployment</p>';
 }
 
 
-// CHECKBOX - For Default Settings Restoration
-function setting_chk1_fn() {
-	$options = get_option('plugin_options');
-	if($options['chkbox1']) { 
-		$checked = ' checked="checked" ';
-	
-	}
-	echo "<input ".$checked." id='plugin_chk1' name='plugin_options[chkbox1]' type='checkbox' />";
-}
-
 // CHECKBOX - For Login Redirect
-function setting_chk2_fn() {
+function k2_essentials_setting_chk2_fn() {
 	$options = get_option('plugin_options');
 	if($options['chkbox2']=='on') { 
 		$checked = ' checked="checked" '; 
@@ -89,19 +68,8 @@ function setting_chk2_fn() {
 }
 
 
-// CHECKBOX - For Change Login Logo
-function setting_checkbox3_login_logo() {
-	$options = get_option('plugin_options');
-	if($options['chkbox3_login_logo']=='on') { 
-		$checked = ' checked="checked" '; 
-	}
-	echo "<div>
-	<input ".$checked." id='plugin_chk3_login_logo' name='plugin_options[chkbox3_login_logo]' type='checkbox' />
-	";
-}
-
 // CHECKBOX - For Block Editor Gutenberg
-function setting_checkbox4_block_editor_gutenberg() {
+function k2_essentials_setting_checkbox4_block_editor_gutenberg() {
 	$options = get_option('plugin_options');
 	if($options['chkbox4_block_editor_gutenberg']=='on') { 
 		$checked = ' checked="checked" '; 
@@ -112,7 +80,7 @@ function setting_checkbox4_block_editor_gutenberg() {
 }
 
 // CHECKBOX - For disable of admin bar
-function setting_checkbox5_disable_admin_bar() {
+function k2_essentials_setting_checkbox5_disable_admin_bar() {
 	$options = get_option('plugin_options');
 	if($options['chkbox5_disable_admin_bar']=='on') { 
 		$checked = ' checked="checked" '; 
@@ -123,7 +91,7 @@ function setting_checkbox5_disable_admin_bar() {
 }
 
 // CHECKBOX - For putting site under maintaince
-function setting_checkbox6_site_under_Maintaince() {
+function k2_essentials_setting_checkbox6_site_under_Maintaince() {
 	$options = get_option('plugin_options');
 	if($options['chkbox6_site_under_Maintaince']=='on') { 
 		$checked = ' checked="checked" '; 
@@ -135,7 +103,7 @@ function setting_checkbox6_site_under_Maintaince() {
 
 
 // CHECKBOX - Hide Update Messages
-function setting_checkbox7_hide_update_message() {
+function k2_essentials_setting_checkbox7_hide_update_message() {
 	$options = get_option('plugin_options');
 	if($options['chkbox7_hide_update_message']=='on') { 
 		$checked = ' checked="checked" '; 
@@ -146,18 +114,8 @@ function setting_checkbox7_hide_update_message() {
 }
 
 
-// Sanitize and validate input. Accepts an array, return a sanitized array.
-function wpet_validate_options($input) {
-	// Sanitize textarea input (strip html tags, and escape characters)
-	//$input['textarea_one'] = wp_filter_nohtml_kses($input['textarea_one']);
-	//$input['textarea_two'] = wp_filter_nohtml_kses($input['textarea_two']);
-	//$input['textarea_three'] = wp_filter_nohtml_kses($input['textarea_three']);
-	return $input;
-}
-
-
 // Display the admin options page
-function options_page_fn() {
+function k2_essentials_options_page_fn() {
 ?>
 	<div class="wrap">
 		<div class="icon32" id="icon-options-general"><br></div>
@@ -179,14 +137,13 @@ if ( function_exists('wp_nonce_field') )
 
 
 // Validate user data for some/all of your input fields
-function plugin_options_validate($input) {
+function k2_essentials_plugin_options_validate($input) {
 	// Check our textbox option field contains no HTML tags - if so strip them out
-	$input['text_string'] =  wp_filter_nohtml_kses($input['text_string']);	
 	return $input; // return validated input
 }
 
 
-function prevent_wp_login() {
+function k2_essentials_prevent_wp_login() {
 	
 	
 	$options = get_option('plugin_options');
@@ -206,26 +163,15 @@ function prevent_wp_login() {
 			}
 	}
 }
-add_filter('login_redirect', 'prevent_wp_login', 999999999, 3);
+add_filter('login_redirect', 'k2_essentials_prevent_wp_login', 999999999, 3);
 
-function modify_logo() {
-	$options = get_option('plugin_options');
-	if($options['chkbox3_login_logo']=='on') { 
-		$logo_style = '<style type="text/css">';
-		$logo_style .= 'h1 a {background-image: url(https://i2.wp.com/pookidevs.com/wp-content/uploads/2020/05/Pookidfevs-logo-transparent-e1588972506839.png?fit=907%2C835&ssl=1) !important;}';
-		$logo_style .= '</style>';
-		echo $logo_style;
-	}
-}
-add_action('login_head', 'modify_logo');
-
-function wp_maintenance_mode(){
+function k2_essentials_wp_maintenance_mode(){
 	if(!current_user_can('edit_themes') || !is_user_logged_in()){
 		wp_die('Maintenance, please come back soon.', 'Maintenance - please come back soon.', array('response' => '503'));
 	}
 }
 
-function perform_checked_snippets(){
+function k2_essentials_perform_checked_snippets(){
 	$options = get_option('plugin_options');
 	
 	
@@ -240,7 +186,7 @@ function perform_checked_snippets(){
 		
 		
 	if($options['chkbox6_site_under_Maintaince']=='on') { 
-		add_action('get_header', 'wp_maintenance_mode');
+		add_action('get_header', 'k2_essentials_wp_maintenance_mode');
 	}
 	
 	if($options['chkbox7_hide_update_message']=='on') { 
@@ -249,10 +195,10 @@ function perform_checked_snippets(){
 }
 
 
-add_action('init', 'perform_checked_snippets');
+add_action('init', 'k2_essentials_perform_checked_snippets');
 
 
-function wphidenag() {
+function k2_essentials_wphidenag() {
 remove_action( 'admin_notices', 'update_nag', 3 );
 }
 
