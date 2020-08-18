@@ -3,7 +3,7 @@
  * Plugin Name: K2 Essentials
  * Plugin URI: https://k2blocks.com/
  * Description: Everything you need before launching the site.
- * Version: 1.0
+ * Version: 1.1
  * Author: PookiDevs.
  * Author URI: https://pookidevs.com/
  **/
