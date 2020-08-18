@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: K2 Essentials
- * Plugin URI: https://k2blocks.com/
+ * Plugin URI: https://pookidevs.com/
  * Description: Everything you need before launching the site.
  * Version: 1.1
  * Author: PookiDevs.
