@@ -3,7 +3,7 @@ Contributors: syedharis632, shahrukhx04, saadhamid
 Tags: tools, utility, toolkit
 Requires at least: 4.7
 Tested up to: 5.4.1
-Stable tag: 1.0
+Stable tag: 1.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -46,6 +46,8 @@ K2 Essentials provides multiple options. Just click on the check box next to the
 1. screenshot-1.jpeg
 
 == Changelog ==
+
+= 1.1 =
 
 = 1.0 =
 * First publish
