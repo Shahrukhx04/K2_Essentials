@@ -20,6 +20,14 @@ K2 Essentials currently features check boxes for the following administrative ac
 2. Hiding admin bar.
 3. Safe URL Redirection
 4. Managing Slugs
+5. Disable Wordpress Default Image Compressor.
+6. Bypass Add to Cart Page
+7. Replace Out of Stock with “Sold” or any text
+8. Display Product Already in Cart Instead of Add to Cart
+9. Set Minimum Order Amount
+10. Remove Password Strength Check in WooCommerce Checkout
+11. Keep only the last item in cart
+
 
 These are some of the most important actions used by developers before deploying the website and making it available to the client. Understanding and integrating codes can be rather confusing for a WordPress developer with little knowledge of coding. Hence, K2 Essentials has now made these functionalities easy for developers possessing any level of expertise. 
 
@@ -49,6 +57,6 @@ K2 Essentials provides multiple options. Just click on the check box next to the
 == Changelog ==
 
 = 1.1 =
-
+* UI Improved and new features added including woocommece basic checkboxes.
 = 1.0 =
 * First publish
