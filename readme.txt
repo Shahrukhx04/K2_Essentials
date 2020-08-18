@@ -43,7 +43,8 @@ K2 Essentials provides multiple options. Just click on the check box next to the
 
 == Screenshots ==
 
-1. screenshot-1.jpeg
+1. screenshot-1.png
+2. screenshot-2.png
 
 == Changelog ==
 
