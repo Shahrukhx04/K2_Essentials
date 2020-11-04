@@ -382,7 +382,7 @@ function k2_essentials_prevent_wp_login() {
 
 function k2_essentials_wp_maintenance_mode(){
 	if(!current_user_can('edit_themes') || !is_user_logged_in()){
-		wp_die('Maintenance, please come back soon.', 'Maintenance - please come back soon.', array('response' => '503'));
+		wp_die('This website is undergoing Maintenance, please come back soon.', 'This website is undergoing Maintenance - please come back soon.', array('response' => '503'));
 	}
 }
 
@@ -487,7 +487,7 @@ function wc_minimum_order_amount() {
         if( is_cart() ) {
 
             wc_print_notice( 
-                sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order ' , 
+                sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order. ' , 
                     wc_price( WC()->cart->total ), 
                     wc_price( $minimum )
                 ), 'error' 
@@ -496,7 +496,7 @@ function wc_minimum_order_amount() {
         } else {
 
             wc_add_notice( 
-                sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order' , 
+                sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order.' , 
                     wc_price( WC()->cart->total ), 
                     wc_price( $minimum )
                 ), 'error' 
